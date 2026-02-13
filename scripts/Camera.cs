@@ -19,7 +19,15 @@ public partial class Camera : Node3D
     CharacterBody3D Player;
 
     [Export]
+    public Player player;
+
+    [Export]
+    CharacterBody3D NPC;
+
+    [Export]
     Node3D CameraPosition;
+
+
 
 
 
@@ -49,12 +57,36 @@ public partial class Camera : Node3D
     float rotationMax = 0.1f;
     float maxZoom = 15.0f;
     float minZoom = 1.0f;
+    float npcZoom = 10.0f;
     float cameraOffset = 0f;
+
+
+
+
+
+
 
 
     public override void _PhysicsProcess(double delta)
     {
-        CameraPosition.Position = Player.Position;
+        // This makes the player either follow the player or the NPC. Could be set to other NPCs too, but I don't need that for this project.
+        if (player.isConnectedToCamera)
+        {
+            CameraPosition.Position = CameraPosition.Position.Slerp(Player.Position, 5.0f * (float)delta);
+
+
+            float zoom = Mathf.Lerp(CameraZoom.Position.Z, maxZoom, 0.1f);
+            CameraZoom.Position = new Vector3(0f, 0f, zoom);
+        }
+        else
+        {
+            CameraPosition.Position = CameraPosition.Position.Slerp(NPC.Position, 5.0f * (float)delta);
+
+            float zoom = Mathf.Lerp(CameraZoom.Position.Z, npcZoom, 0.1f);
+            CameraZoom.Position = new Vector3(0f, 0f, zoom);
+        }
+
+
         CameraYaw.Rotation = new Vector3(0f, Player.Rotation.Y, 0f);
 
 
@@ -62,12 +94,9 @@ public partial class Camera : Node3D
 
 
 
-        // **DEBUG**
-        DebugDraw3D.DrawSphere(LeftRay3.GetCollisionPoint(), 0.5f, Colors.Yellow);
 
 
-
-        if (LeftRay3.IsColliding() || LeftRay2.IsColliding() || LeftRay1.IsColliding())
+        if ((LeftRay3.IsColliding() || LeftRay2.IsColliding() || LeftRay1.IsColliding()) && player.isConnectedToCamera)
         {
 
             if (LeftRay1.IsColliding())
@@ -101,7 +130,7 @@ public partial class Camera : Node3D
             cameraOffset = Mathf.Lerp(cameraOffset, 1.0f, 0.01f);
             CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
         }
-        else
+        else if (player.isConnectedToCamera)
         {
             rotationMax = 0f;
 
@@ -118,7 +147,7 @@ public partial class Camera : Node3D
 
 
 
-        if (RightRay3.IsColliding() || RightRay2.IsColliding() || RightRay1.IsColliding())
+        if ((RightRay3.IsColliding() || RightRay2.IsColliding() || RightRay1.IsColliding()) && player.isConnectedToCamera)
         {
 
             if (RightRay1.IsColliding())
@@ -147,7 +176,7 @@ public partial class Camera : Node3D
 
 
         }
-        else
+        else if (player.isConnectedToCamera)
         {
             rotationMax = 0f;
 
@@ -165,7 +194,7 @@ public partial class Camera : Node3D
 
 
 
-        if(CameraRay.IsColliding())
+        if(CameraRay.IsColliding() && player.isConnectedToCamera)
         {
 
             //float zoom = Mathf.Lerp(CameraZoom.Position.Z, Player.Position.Z - CameraRay.GetCollisionPoint().Z, 0.1f);
@@ -175,9 +204,9 @@ public partial class Camera : Node3D
 
             CameraZoom.Position = new Vector3(0f, 0f, zoom);
         }
-        else
+        else if (player.isConnectedToCamera)
         {
-            float zoom = Mathf.Lerp(CameraZoom.Position.Z, maxZoom, 0.5f);
+            float zoom = Mathf.Lerp(CameraZoom.Position.Z, maxZoom, 0.1f);
 
             CameraZoom.Position = new Vector3(0f, 0f, zoom);
 
@@ -199,8 +228,11 @@ public partial class Camera : Node3D
 
 
 
+        // **DEBUG**
+        DebugDraw3D.DrawSphere(LeftRay3.GetCollisionPoint(), 0.5f, Colors.Yellow);
 
         DebugDraw3D.DrawSphere(CameraPosition.GlobalPosition, 0.5f, Colors.Red);
+
         DebugDraw3D.DrawSphere(CameraOffset.GlobalPosition, 0.5f, Colors.Green);
 
 
@@ -211,5 +243,6 @@ public partial class Camera : Node3D
     }
 
 
-
 }
+
+

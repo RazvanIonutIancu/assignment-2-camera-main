@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody3D
 {
@@ -14,10 +15,7 @@ public partial class Player : CharacterBody3D
 	public float TurnSpeed = 3.0f;
 
 
-
-
-
-
+	public bool isConnectedToCamera = true;
 
 
 
@@ -104,7 +102,7 @@ public partial class Player : CharacterBody3D
 
 
 
-
+		
 
 
 
@@ -123,4 +121,23 @@ public partial class Player : CharacterBody3D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	private void OnBodyEntered(Node3D body)
+    {
+        if (body is Player)
+        {
+            isConnectedToCamera = false;
+        }
+    }
+
+
+    private void OnBodyExited(Node3D body)
+    {
+        if (body is Player)
+        {
+            isConnectedToCamera = true;
+        }
+    }
+
+
 }

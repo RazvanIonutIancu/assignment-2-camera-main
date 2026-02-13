@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxeo4k8dptovg"]
 
-[ext_resource type="Script" uid="uid://urobbusltbos" path="res://scenes/Camera.cs" id="1_cvpoc"]
+[ext_resource type="Script" uid="uid://urobbusltbos" path="res://scripts/Camera.cs" id="1_cvpoc"]
 
 [node name="Camera" type="Node3D" node_paths=PackedStringArray("CameraTilt", "CameraYaw", "CameraZoom")]
 script = ExtResource("1_cvpoc")

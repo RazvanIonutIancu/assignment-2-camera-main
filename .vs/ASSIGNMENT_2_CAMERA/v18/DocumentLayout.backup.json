@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6161B45A-84A9-4F7B-B8B4-8D4038DE38D8}|Assignment_2_Camera.csproj|c:\\users\\zacku\\desktop\\assignment-2-camera-main\\scenes\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6161B45A-84A9-4F7B-B8B4-8D4038DE38D8}|Assignment_2_Camera.csproj|solutionrelative:scenes\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6161B45A-84A9-4F7B-B8B4-8D4038DE38D8}|Assignment_2_Camera.csproj|c:\\users\\zacku\\desktop\\assignment-2-camera-main\\scripts\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6161B45A-84A9-4F7B-B8B4-8D4038DE38D8}|Assignment_2_Camera.csproj|solutionrelative:scripts\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6161B45A-84A9-4F7B-B8B4-8D4038DE38D8}|Assignment_2_Camera.csproj|c:\\users\\zacku\\desktop\\assignment-2-camera-main\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6161B45A-84A9-4F7B-B8B4-8D4038DE38D8}|Assignment_2_Camera.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 233,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\scripts\\Player.cs",
+              "RelativeDocumentMoniker": "scripts\\Player.cs",
+              "ToolTip": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\scripts\\Player.cs",
+              "RelativeToolTip": "scripts\\Player.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAgwIcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-13T11:07:13.779Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Camera.cs",
-              "DocumentMoniker": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\scenes\\Camera.cs",
-              "RelativeDocumentMoniker": "scenes\\Camera.cs",
-              "ToolTip": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\scenes\\Camera.cs",
-              "RelativeToolTip": "scenes\\Camera.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAgwJIAAAAXAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\scripts\\Camera.cs",
+              "RelativeDocumentMoniker": "scripts\\Camera.cs",
+              "ToolTip": "C:\\Users\\Zacku\\Desktop\\assignment-2-camera-main\\scripts\\Camera.cs",
+              "RelativeToolTip": "scripts\\Camera.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAAE4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-12T16:13:11.853Z",
+              "WhenOpened": "2026-02-13T11:07:15.298Z",
               "EditorCaption": ""
             }
           ]
