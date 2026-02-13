@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy3lusgqp52v8"]
+
+[ext_resource type="PackedScene" uid="uid://d1ai6s6p8dvag" path="res://scenes/map.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://ct32ppmfue4v1" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bxeo4k8dptovg" path="res://scenes/camera.tscn" id="3_sugp2"]
+
+[node name="Main" type="Node"]
+
+[node name="Map" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="Player" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Body" parent="Player" index="0"]
+visible = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5548444, -0.6839861, 0.47361442, 0, 0.5692795, 0.82214403, -0.831954, -0.45616204, 0.31586155, 4.487, 454.479, 400)
+shadow_enabled = true
+
+[node name="Camera" parent="." node_paths=PackedStringArray("CameraOffset", "Player", "CameraPosition", "LeftRay1", "LeftRay2", "LeftRay3", "CameraRay", "RightRay1", "RightRay2", "RightRay3") instance=ExtResource("3_sugp2")]
+CameraOffset = NodePath("Yaw/Offset")
+Player = NodePath("../Player")
+CameraPosition = NodePath(".")
+LeftRay1 = NodePath("../Player/LeftRay1")
+LeftRay2 = NodePath("../Player/LeftRay2")
+LeftRay3 = NodePath("../Player/LeftRay3")
+CameraRay = NodePath("../Player/CameraRay")
+RightRay1 = NodePath("../Player/RightRay1")
+RightRay2 = NodePath("../Player/RightRay2")
+RightRay3 = NodePath("../Player/RightRay3")
+
+[node name="Tilt" parent="Camera/Yaw/Offset" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.809017, 0.58778524, 0, -0.58778524, 0.809017, 0, 0, 0)
+
+[node name="Zoom" parent="Camera/Yaw/Offset/Tilt" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[editable path="Player"]
+[editable path="Camera"]

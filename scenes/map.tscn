@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ai6s6p8dvag"]
+
+[ext_resource type="PackedScene" uid="uid://iycgbiso4u4u" path="res://scenes/ground.tscn" id="1_4xfga"]
+[ext_resource type="PackedScene" uid="uid://biwswordbhik5" path="res://scenes/pillar.tscn" id="2_paxxb"]
+
+[node name="Map" type="Node"]
+
+[node name="Ground" parent="." instance=ExtResource("1_4xfga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Pillar" parent="." instance=ExtResource("2_paxxb")]
+transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 5, 15.128401, 9.153944, -22)

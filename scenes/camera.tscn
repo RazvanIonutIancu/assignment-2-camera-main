@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxeo4k8dptovg"]
+
+[ext_resource type="Script" uid="uid://urobbusltbos" path="res://scenes/Camera.cs" id="1_cvpoc"]
+
+[node name="Camera" type="Node3D" node_paths=PackedStringArray("CameraTilt", "CameraYaw", "CameraZoom")]
+script = ExtResource("1_cvpoc")
+CameraTilt = NodePath("Yaw/Offset/Tilt")
+CameraYaw = NodePath("Yaw")
+CameraZoom = NodePath("Yaw/Offset/Tilt/Zoom")
+
+[node name="Yaw" type="Node3D" parent="."]
+
+[node name="Offset" type="Node3D" parent="Yaw"]
+
+[node name="Tilt" type="Node3D" parent="Yaw/Offset"]
+
+[node name="Zoom" type="Node3D" parent="Yaw/Offset/Tilt"]
+
+[node name="Camera3D" type="Camera3D" parent="Yaw/Offset/Tilt/Zoom"]
