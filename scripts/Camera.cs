@@ -59,7 +59,9 @@ public partial class Camera : Node3D
     float minZoom = 1.0f;
     float npcZoom = 10.0f;
     float cameraOffset = 0f;
-
+    float cameraSpeed = 0.07f;
+    float maxCameraTilt = Mathf.DegToRad(-1);
+    float minCameraTilt = Mathf.DegToRad(-60);
 
 
 
@@ -87,7 +89,36 @@ public partial class Camera : Node3D
         }
 
 
-        CameraYaw.Rotation = new Vector3(0f, Player.Rotation.Y, 0f);
+        //CameraYaw.Rotation = new Vector3(0f, Player.Rotation.Y, 0f);
+
+
+
+        float cameraVerticalInput = Input.GetAxis("camera_up", "camera_down");
+
+        if (Mathf.Abs(cameraVerticalInput) > 0.01f)
+        {
+            CameraTilt.Rotation += new Vector3(cameraVerticalInput * cameraSpeed, 0f, 0f);
+
+            if (CameraTilt.Rotation.X > maxCameraTilt)
+            {
+                CameraTilt.Rotation = new Vector3(maxCameraTilt, 0f, 0f);
+            }
+            if (CameraTilt.Rotation.X < minCameraTilt)
+            {
+                CameraTilt.Rotation = new Vector3(minCameraTilt, 0f, 0f);
+            }
+
+        }
+
+
+
+
+        float cameraHorizontalInput = Input.GetAxis("camera_left", "camera_right");
+
+        if (Mathf.Abs(cameraHorizontalInput) > 0.01f)
+        {
+            CameraYaw.Rotation += new Vector3(0f,cameraHorizontalInput * cameraSpeed,  0f);
+        }
 
 
 
@@ -96,7 +127,12 @@ public partial class Camera : Node3D
 
 
 
-        if ((LeftRay3.IsColliding() || LeftRay2.IsColliding() || LeftRay1.IsColliding()) && player.isConnectedToCamera)
+
+
+
+
+
+        if ((LeftRay3.IsColliding() || LeftRay2.IsColliding() || LeftRay1.IsColliding()) && player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
         {
 
             if (LeftRay1.IsColliding())
@@ -130,7 +166,7 @@ public partial class Camera : Node3D
             cameraOffset = Mathf.Lerp(cameraOffset, 1.0f, 0.01f);
             CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
         }
-        else if (player.isConnectedToCamera)
+        else if (player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
         {
             rotationMax = 0f;
 
@@ -147,7 +183,7 @@ public partial class Camera : Node3D
 
 
 
-        if ((RightRay3.IsColliding() || RightRay2.IsColliding() || RightRay1.IsColliding()) && player.isConnectedToCamera)
+        if ((RightRay3.IsColliding() || RightRay2.IsColliding() || RightRay1.IsColliding()) && player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
         {
 
             if (RightRay1.IsColliding())
@@ -176,7 +212,7 @@ public partial class Camera : Node3D
 
 
         }
-        else if (player.isConnectedToCamera)
+        else if (player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
         {
             rotationMax = 0f;
 
