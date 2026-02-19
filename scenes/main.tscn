@@ -9,9 +9,10 @@
 
 [node name="Map" parent="." instance=ExtResource("1_o5qli")]
 
-[node name="Player" parent="." instance=ExtResource("2_0wfyh")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_0wfyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 7
+camera = NodePath("../Camera")
 
 [node name="Body" parent="Player" index="0"]
 visible = true
@@ -26,19 +27,22 @@ Player = NodePath("../Player")
 player = NodePath("../Player")
 NPC = NodePath("../NPC")
 CameraPosition = NodePath(".")
-LeftRay1 = NodePath("../Player/LeftRay1")
-LeftRay2 = NodePath("../Player/LeftRay2")
-LeftRay3 = NodePath("../Player/LeftRay3")
-CameraRay = NodePath("../Player/CameraRay")
-RightRay1 = NodePath("../Player/RightRay1")
-RightRay2 = NodePath("../Player/RightRay2")
-RightRay3 = NodePath("../Player/RightRay3")
+LeftRay1 = NodePath("Yaw/Offset/Tilt/LeftRay1")
+LeftRay2 = NodePath("Yaw/Offset/Tilt/LeftRay2")
+LeftRay3 = NodePath("Yaw/Offset/Tilt/LeftRay3")
+CameraRay = NodePath("Yaw/Offset/Tilt/CameraRay")
+RightRay1 = NodePath("Yaw/Offset/Tilt/RightRay1")
+RightRay2 = NodePath("Yaw/Offset/Tilt/RightRay2")
+RightRay3 = NodePath("Yaw/Offset/Tilt/RightRay3")
 
 [node name="Tilt" parent="Camera/Yaw/Offset" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 
 [node name="Zoom" parent="Camera/Yaw/Offset/Tilt" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="LeftRay1" parent="Camera/Yaw/Offset/Tilt" index="1"]
+collision_mask = 8
 
 [node name="NPC" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -19)

@@ -14,6 +14,8 @@ public partial class Player : CharacterBody3D
 	[Export]
 	public float TurnSpeed = 3.0f;
 
+	[Export]
+	Node3D camera;
 
 	public bool isConnectedToCamera = true;
 

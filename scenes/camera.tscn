@@ -17,3 +17,31 @@ CameraZoom = NodePath("Yaw/Offset/Tilt/Zoom")
 [node name="Zoom" type="Node3D" parent="Yaw/Offset/Tilt"]
 
 [node name="Camera3D" type="Camera3D" parent="Yaw/Offset/Tilt/Zoom"]
+
+[node name="LeftRay1" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(-3, 0, 15)
+collision_mask = 16
+
+[node name="LeftRay2" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(-5.5, 0, 15)
+collision_mask = 16
+
+[node name="LeftRay3" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(-7, 0, 15)
+collision_mask = 16
+
+[node name="CameraRay" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(0, 0, 15)
+collision_mask = 16
+
+[node name="RightRay1" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(3, 0, 15)
+collision_mask = 16
+
+[node name="RightRay2" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(5.5, 0, 15)
+collision_mask = 16
+
+[node name="RightRay3" type="RayCast3D" parent="Yaw/Offset/Tilt"]
+target_position = Vector3(7, 0, 15)
+collision_mask = 16

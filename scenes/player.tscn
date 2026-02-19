@@ -17,15 +17,8 @@ height = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("LeftRay1", "LeftRay2", "LeftRay3", "CameraRay", "RightRay1", "RightRay2", "RightRay3")]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
-LeftRay1 = NodePath("LeftRay1")
-LeftRay2 = NodePath("LeftRay2")
-LeftRay3 = NodePath("LeftRay3")
-CameraRay = NodePath("CameraRay")
-RightRay1 = NodePath("RightRay1")
-RightRay2 = NodePath("RightRay2")
-RightRay3 = NodePath("RightRay3")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
@@ -38,24 +31,3 @@ mesh = SubResource("CylinderMesh_3vyb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_g2els")
-
-[node name="LeftRay1" type="RayCast3D" parent="."]
-target_position = Vector3(-3, 10, 10)
-
-[node name="LeftRay2" type="RayCast3D" parent="."]
-target_position = Vector3(-5.5, 10, 10)
-
-[node name="LeftRay3" type="RayCast3D" parent="."]
-target_position = Vector3(-7, 10, 10)
-
-[node name="CameraRay" type="RayCast3D" parent="."]
-target_position = Vector3(0, 10, 10)
-
-[node name="RightRay1" type="RayCast3D" parent="."]
-target_position = Vector3(3, 10, 10)
-
-[node name="RightRay2" type="RayCast3D" parent="."]
-target_position = Vector3(5.5, 10, 10)
-
-[node name="RightRay3" type="RayCast3D" parent="."]
-target_position = Vector3(7, 10, 10)
