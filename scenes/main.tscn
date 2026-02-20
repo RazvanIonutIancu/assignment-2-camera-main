@@ -10,7 +10,7 @@
 [node name="Map" parent="." instance=ExtResource("1_o5qli")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.417046, 1, 34.170555)
 collision_mask = 7
 camera = NodePath("../Camera")
 
@@ -21,8 +21,7 @@ visible = true
 transform = Transform3D(0.5548444, -0.6839861, 0.47361442, 0, 0.5692795, 0.82214403, -0.831954, -0.45616204, 0.31586155, 4.487, 454.479, 400)
 shadow_enabled = true
 
-[node name="Camera" parent="." node_paths=PackedStringArray("CameraOffset", "Player", "player", "NPC", "CameraPosition", "LeftRay1", "LeftRay2", "LeftRay3", "CameraRay", "RightRay1", "RightRay2", "RightRay3") instance=ExtResource("3_sugp2")]
-CameraOffset = NodePath("Yaw/Offset")
+[node name="Camera" parent="." node_paths=PackedStringArray("Player", "player", "NPC", "CameraPosition", "LeftRay1", "LeftRay2", "LeftRay3", "CameraRay", "RightRay1", "RightRay2", "RightRay3") instance=ExtResource("3_sugp2")]
 Player = NodePath("../Player")
 player = NodePath("../Player")
 NPC = NodePath("../NPC")
@@ -41,11 +40,8 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 [node name="Zoom" parent="Camera/Yaw/Offset/Tilt" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 
-[node name="LeftRay1" parent="Camera/Yaw/Offset/Tilt" index="1"]
-collision_mask = 8
-
 [node name="NPC" parent="." instance=ExtResource("4_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.108428, 1, 28.616814)
 collision_layer = 4
 
 [node name="Area3D" parent="NPC" index="2"]

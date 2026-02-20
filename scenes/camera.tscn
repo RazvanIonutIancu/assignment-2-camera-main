@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://urobbusltbos" path="res://scripts/Camera.cs" id="1_cvpoc"]
 
-[node name="Camera" type="Node3D" node_paths=PackedStringArray("CameraTilt", "CameraYaw", "CameraZoom")]
+[node name="Camera" type="Node3D" node_paths=PackedStringArray("CameraOffset", "CameraTilt", "CameraYaw", "CameraZoom", "FollowTimer")]
 script = ExtResource("1_cvpoc")
+CameraOffset = NodePath("Yaw/Offset")
 CameraTilt = NodePath("Yaw/Offset/Tilt")
 CameraYaw = NodePath("Yaw")
 CameraZoom = NodePath("Yaw/Offset/Tilt/Zoom")
+FollowTimer = NodePath("FollowTimer")
 
 [node name="Yaw" type="Node3D" parent="."]
 
@@ -45,3 +47,7 @@ collision_mask = 16
 [node name="RightRay3" type="RayCast3D" parent="Yaw/Offset/Tilt"]
 target_position = Vector3(7, 0, 15)
 collision_mask = 16
+
+[node name="FollowTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

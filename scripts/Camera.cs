@@ -27,6 +27,9 @@ public partial class Camera : Node3D
     [Export]
     Node3D CameraPosition;
 
+    [Export]
+    Timer FollowTimer;
+
 
 
 
@@ -52,17 +55,21 @@ public partial class Camera : Node3D
 
     // Camera
     float rotationLimit = Mathf.DegToRad(5.0f);
-    float rotationY;
+    float rotationY = 0f;
     float rotationYSpeed = 0.3f;
-    float rotationMax = 0.1f;
+    //float rotationMax = 0.1f;
     float maxZoom = 15.0f;
     float minZoom = 1.0f;
     float npcZoom = 10.0f;
     float cameraOffset = 0f;
-    float cameraSpeed = 0.07f;
+    float cameraSpeed = 0.05f;
     float maxCameraTilt = Mathf.DegToRad(-1);
+    float defaultCameraTilt = Mathf.DegToRad(-30);
+    float currentCameraTilt;
     float minCameraTilt = Mathf.DegToRad(-60);
 
+    float cameraLeftRotationBase = 0f;
+    float cameraRightRotationBase = 0f;
     float cameraRotationBase = 0f;
 
 
@@ -93,11 +100,13 @@ public partial class Camera : Node3D
 
 
         // Camera joystick controls
+        // Tilt
         float cameraVerticalInput = Input.GetAxis("camera_down", "camera_up");
 
         if (Mathf.Abs(cameraVerticalInput) > 0.01f)
         {
             CameraTilt.Rotation += new Vector3(cameraVerticalInput * cameraSpeed, 0f, 0f);
+            FollowTimer.Start();
 
             if (CameraTilt.Rotation.X > maxCameraTilt)
             {
@@ -109,17 +118,24 @@ public partial class Camera : Node3D
             }
 
         }
+        else if((Mathf.Abs(player.Velocity.X) > 0.1f || Mathf.Abs(player.Velocity.Z) > 0.1f) && FollowTimer.IsStopped())
+        {
+            currentCameraTilt = Mathf.LerpAngle(CameraTilt.Rotation.X, defaultCameraTilt, cameraSpeed);
+
+            CameraTilt.Rotation = new Vector3(currentCameraTilt, 0f, 0f);
+        }
 
 
 
-
+        // Yaw
         float cameraHorizontalInput = Input.GetAxis("camera_left", "camera_right");
 
         if (Mathf.Abs(cameraHorizontalInput) > 0.01f)
         {
             CameraYaw.Rotation += new Vector3(0f, cameraHorizontalInput * cameraSpeed, 0f);
+            FollowTimer.Start();
         }
-        else if (Mathf.Abs(player.Velocity.X) > 0.1f || Mathf.Abs(player.Velocity.Z) > 0.1f)
+        else if ((Mathf.Abs(player.Velocity.X) > 0.1f || Mathf.Abs(player.Velocity.Z) > 0.1f) && FollowTimer.IsStopped())
         {
             rotationY = Mathf.LerpAngle(CameraYaw.Rotation.Y, Player.Rotation.Y + cameraRotationBase, cameraSpeed);
 
@@ -135,104 +151,107 @@ public partial class Camera : Node3D
 
 
 
-        //// Raycasts 
+        // Raycasts 
 
-        //if ((LeftRay3.IsColliding() || LeftRay2.IsColliding() || LeftRay1.IsColliding()) && player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
-        //{
+        if ((LeftRay3.IsColliding() || LeftRay2.IsColliding() || LeftRay1.IsColliding()) && player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f) && FollowTimer.IsStopped())
+        {
 
-        //    if (LeftRay1.IsColliding())
-        //    {
-        //        rotationMax = 0.2f;
-        //    }
-        //    else if (LeftRay2.IsColliding())
-        //    {
-        //        rotationMax = 0.15f;
-        //    }
-        //    else if (LeftRay3.IsColliding())
-        //    {
-        //        rotationMax = 0.1f;
-        //    }
-
-
-        //    // BS
-        //    //rotationY -= Player.Rotation.Y * (float)delta * rotationYSpeed;
-        //    //if (rotationY < 0f) rotationY = 0f;
-        //    //else if (rotationY > rotationMax) rotationY = rotationMax;
+            if (LeftRay1.IsColliding())
+            {
+                cameraLeftRotationBase = 0.2f;
+                GD.Print("LR 1 is colliding");
+            }
+            else if (LeftRay2.IsColliding())
+            {
+                cameraLeftRotationBase = 0.15f;
+                GD.Print("LR 2 is colliding");
+            }
+            else if (LeftRay3.IsColliding())
+            {
+                cameraLeftRotationBase = 0.1f;
+                GD.Print("LR 3 is colliding");
+            }
 
 
-        //    rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
-
-        //    CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
-
-
-
+            // BS
+            //rotationY -= Player.Rotation.Y * (float)delta * rotationYSpeed;
+            //if (rotationY < 0f) rotationY = 0f;
+            //else if (rotationY > rotationMax) rotationY = rotationMax;
 
 
-        //    cameraOffset = Mathf.Lerp(cameraOffset, 1.0f, 0.01f);
-        //    CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
-        //}
-        //else if (player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
-        //{
-        //    rotationMax = 0f;
+            //rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
 
-        //    rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
-
-        //    CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
-
-
-
-        //    cameraOffset = Mathf.Lerp(cameraOffset, 0.0f, 0.01f);
-        //    CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
-
-        //}
-
-
-
-        //if ((RightRay3.IsColliding() || RightRay2.IsColliding() || RightRay1.IsColliding()) && player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
-        //{
-
-        //    if (RightRay1.IsColliding())
-        //    {
-        //        rotationMax = -0.2f;
-        //    }
-        //    else if (RightRay2.IsColliding())
-        //    {
-        //        rotationMax = -0.15f;
-        //    }
-        //    else if (RightRay3.IsColliding())
-        //    {
-        //        rotationMax = -0.1f;
-        //    }
-
-
-        //    rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
-
-        //    CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
+            //CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
 
 
 
 
-        //    cameraOffset = Mathf.Lerp(cameraOffset, -1.0f, 0.01f);
-        //    CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
+
+            cameraOffset = Mathf.Lerp(cameraOffset, 1.0f, 0.01f);
+            CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
+        }
+        else if (player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f) && FollowTimer.IsStopped())
+        {
+            cameraLeftRotationBase = 0f;
+
+            //rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
+
+            //CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
 
 
-        //}
-        //else if (player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f))
-        //{
-        //    rotationMax = 0f;
 
-        //    rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
+            cameraOffset = Mathf.Lerp(cameraOffset, 0.0f, 0.01f);
+            CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
 
-        //    CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
+        }
 
 
 
-        //    cameraOffset = Mathf.Lerp(cameraOffset, 0.0f, 0.01f);
-        //    CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
+        if ((RightRay3.IsColliding() || RightRay2.IsColliding() || RightRay1.IsColliding()) && player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f) && FollowTimer.IsStopped())
+        {
 
-        //}
+            if (RightRay1.IsColliding())
+            {
+                cameraRightRotationBase = -0.2f;
+            }
+            else if (RightRay2.IsColliding())
+            {
+                cameraRightRotationBase = -0.15f;
+            }
+            else if (RightRay3.IsColliding())
+            {
+                cameraRightRotationBase = -0.1f;
+            }
 
 
+            //rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
+
+            //CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
+
+
+
+
+            cameraOffset = Mathf.Lerp(cameraOffset, -1.0f, 0.01f);
+            CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
+
+
+        }
+        else if (player.isConnectedToCamera && (Mathf.Abs(cameraHorizontalInput) < 0.01f) && FollowTimer.IsStopped())
+        {
+            cameraRightRotationBase = 0f;
+
+            //rotationY = Mathf.Lerp(rotationY, rotationMax, 0.01f);
+
+            //CameraYaw.Rotation += new Vector3(0f, rotationY, 0f);
+
+
+
+            cameraOffset = Mathf.Lerp(cameraOffset, 0.0f, 0.01f);
+            CameraOffset.Position = new Vector3(cameraOffset, 0f, 0f);
+
+        }
+
+        cameraRotationBase = cameraRightRotationBase + cameraLeftRotationBase;
 
 
         if (CameraRay.IsColliding() && player.isConnectedToCamera)
@@ -276,6 +295,7 @@ public partial class Camera : Node3D
 
         DebugDraw3D.DrawSphere(CameraOffset.GlobalPosition, 0.5f, Colors.Green);
 
+        GD.Print(cameraRotationBase);
 
 
 

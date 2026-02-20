@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1ai6s6p8dvag"]
+[gd_scene load_steps=5 format=3 uid="uid://d1ai6s6p8dvag"]
 
 [ext_resource type="PackedScene" uid="uid://iycgbiso4u4u" path="res://scenes/ground.tscn" id="1_4xfga"]
 [ext_resource type="PackedScene" uid="uid://biwswordbhik5" path="res://scenes/pillar.tscn" id="2_paxxb"]
+[ext_resource type="PackedScene" uid="uid://s0kibmkue0dv" path="res://scenes/wall.tscn" id="3_gldc4"]
+[ext_resource type="PackedScene" uid="uid://bivhom0lr2x5d" path="res://scenes/small_obstacle.tscn" id="4_0cso3"]
 
 [node name="Map" type="Node"]
 
@@ -9,4 +11,31 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Pillar" parent="." instance=ExtResource("2_paxxb")]
-transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 5, 15.128401, 9.153944, -22)
+transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 5, 9.857101, 9.153944, -11.563583)
+
+[node name="Pillar2" parent="." instance=ExtResource("2_paxxb")]
+transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 5, 15.712974, 9.153944, -2.2165422)
+
+[node name="Pillar3" parent="." instance=ExtResource("2_paxxb")]
+transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 5, 7.554144, 9.153944, 2.3412895)
+
+[node name="Wall" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(13.382299, 0, 0, 0, 2.8424053, 0, 0, 0, 1, -14.651766, 1.3396344, 0)
+
+[node name="Wall2" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(13.382299, 0, 0, 0, 2.8424053, 0, 0, 0, 1, -14.651766, 1.3396344, 7.114959)
+
+[node name="Wall3" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(13.295921, 0, 0, 0, -3.5769352e-07, 1, 0, -8.183073, -4.371139e-08, -14.651766, 3.0600796, 3.5176516)
+
+[node name="SmallObstacle" parent="." instance=ExtResource("4_0cso3")]
+transform = Transform3D(0.4700135, 0, 0, 0, 6.7873664, 0, 0, 0, 0.5861023, 13.417908, 3.1927135, 26.427675)
+
+[node name="SmallObstacle2" parent="." instance=ExtResource("4_0cso3")]
+transform = Transform3D(0.4700135, 0, 0, 0, 6.7873664, 0, 0, 0, 0.5861023, 16.681782, 3.1927135, 26.427675)
+
+[node name="SmallObstacle3" parent="." instance=ExtResource("4_0cso3")]
+transform = Transform3D(0.4700135, 0, 0, 0, 6.7873664, 0, 0, 0, 0.5861023, 16.681782, 3.1927135, 29.294428)
+
+[node name="SmallObstacle4" parent="." instance=ExtResource("4_0cso3")]
+transform = Transform3D(0.4700135, 0, 0, 0, 6.7873664, 0, 0, 0, 0.5861023, 13.157204, 3.1927135, 29.294428)

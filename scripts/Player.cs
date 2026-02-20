@@ -65,15 +65,16 @@ public partial class Player : CharacterBody3D
 		}
 
 
-		// CUSTOM MOVEMENT
+        // CUSTOM MOVEMENT
+        float turnInput = Input.GetAxis("turn_left", "turn_right");
 
-		if (Input.IsActionPressed("turn_left"))
+        if (Input.IsActionPressed("turn_left"))
 		{
-			RotateY(TurnSpeed * (float)delta);
+			RotateY(-turnInput * TurnSpeed * (float)delta);
         }
         if (Input.IsActionPressed("turn_right"))
         {
-            RotateY(-TurnSpeed * (float)delta);
+            RotateY(-turnInput * TurnSpeed * (float)delta);
         }
 
 		//if(Input.IsActionJustPressed("move_forward"))
