@@ -105,7 +105,7 @@ public partial class Camera : Node3D
 
         if (Mathf.Abs(cameraVerticalInput) > 0.01f)
         {
-            CameraTilt.Rotation += new Vector3(cameraVerticalInput * cameraSpeed, 0f, 0f);
+            CameraTilt.Rotation += new Vector3(-cameraVerticalInput * cameraSpeed, 0f, 0f);
             FollowTimer.Start();
 
             if (CameraTilt.Rotation.X > maxCameraTilt)
@@ -159,17 +159,17 @@ public partial class Camera : Node3D
             if (LeftRay1.IsColliding())
             {
                 cameraLeftRotationBase = 0.2f;
-                GD.Print("LR 1 is colliding");
+                //GD.Print("LR 1 is colliding");
             }
             else if (LeftRay2.IsColliding())
             {
                 cameraLeftRotationBase = 0.15f;
-                GD.Print("LR 2 is colliding");
+                //GD.Print("LR 2 is colliding");
             }
             else if (LeftRay3.IsColliding())
             {
                 cameraLeftRotationBase = 0.1f;
-                GD.Print("LR 3 is colliding");
+                //GD.Print("LR 3 is colliding");
             }
 
 
@@ -287,7 +287,7 @@ public partial class Camera : Node3D
 
 
 
-
+        /*
         // **DEBUG**
         DebugDraw3D.DrawSphere(LeftRay3.GetCollisionPoint(), 0.5f, Colors.Yellow);
 
@@ -298,7 +298,7 @@ public partial class Camera : Node3D
         GD.Print(cameraRotationBase);
 
 
-
+        */
 
 
     }
