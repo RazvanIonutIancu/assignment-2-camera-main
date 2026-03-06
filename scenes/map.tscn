@@ -8,7 +8,7 @@
 [node name="Map" type="Node"]
 
 [node name="Ground" parent="." instance=ExtResource("1_4xfga")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(0.30015308, 0, 0, 0, 1, 0, 0, 0, 0.32879674, 0, -0.5, 0)
 
 [node name="Pillar" parent="." instance=ExtResource("2_paxxb")]
 transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 5, 9.857101, 9.153944, -11.563583)
@@ -27,6 +27,18 @@ transform = Transform3D(13.382299, 0, 0, 0, 2.8424053, 0, 0, 0, 1, -14.651766, 1
 
 [node name="Wall3" parent="." instance=ExtResource("3_gldc4")]
 transform = Transform3D(13.295921, 0, 0, 0, -3.5769352e-07, 1, 0, -8.183073, -4.371139e-08, -14.651766, 3.0600796, 3.5176516)
+
+[node name="Wall4" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(149.22911, 0, 0, 0, 8.183073, 0, 0, 0, 1, 0.47097015, 3.0600796, 81.692856)
+
+[node name="Wall5" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(149.22911, 0, 0, 0, 8.183073, 0, 0, 0, 1, 0.47097015, 3.0600796, -81.45711)
+
+[node name="Wall6" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(-7.088884e-06, 0, -0.99999994, 0, 8.183073, 0, 162.17476, 0, -4.3711385e-08, 73.952774, 3.0600796, 0.10207558)
+
+[node name="Wall7" parent="." instance=ExtResource("3_gldc4")]
+transform = Transform3D(-7.088884e-06, 0, -0.99999994, 0, 8.183073, 0, 162.17476, 0, -4.3711385e-08, -73.793434, 3.0600796, 0.24434853)
 
 [node name="SmallObstacle" parent="." instance=ExtResource("4_0cso3")]
 transform = Transform3D(0.4700135, 0, 0, 0, 6.7873664, 0, 0, 0, 0.5861023, 13.417908, 3.1927135, 26.427675)
