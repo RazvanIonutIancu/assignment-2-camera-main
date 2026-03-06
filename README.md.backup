@@ -7,7 +7,7 @@
 In this context, the level is designed to showcase the tech behind the camera controls.
 
 - On a high level, it features an open space with enough elements to test how the camera behaves in different scenarios. Speed is conveyed by the relative movement to the other objects in the scene. The scale is also conveyed by having an NPC with the same size as the playable character, or massive pillars and a narrow passageway.
-- On a medium level, there are only a few assets in the scene and they are placed quite far from each other. Each object serves the purpose of showcasing a different function of the camera controls. The NPC gives a more intimate frame, allowing the player to focus on a possible conversation or action. The pillars showcase scale and the passageway can be used to close the camera in a lot and possible trigger a slight sense of claustrophobia.
+- On a medium level, there are only a few assets in the scene and they are placed quite far from each other. Each object serves the purpose of showcasing a different function of the camera controls. The NPC gives a more intimate frame, allowing the player ot focus on a poossible conversation or action. The pillars showcase scale and the passageway can be used to close the camera in a lot and possible trigger a slight sense of claustrophobia.
 - On a low level, every time the camera "collides" with certain objects, it zooms in as to avoid having objects between the player and the camera itself. While the player is not manually controlling it, the camer also offsets to the right or left if an object invades the frame on the opposite side.
 
 ## Was the camera mechanics intuitive to the player?
